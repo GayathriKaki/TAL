@@ -3,23 +3,30 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using TAL.EF.Models;
-using TAL.ServiceRepository.Interfaces;
+using TAL.ServiceRepo.Interfaces;
 
 namespace TAL.ServiceRepo.Services
 {
    public class CalculationService : ICalculationService
     {
-        public async Task<decimal> CalculateTotal(Member member)
-        {
-            RatingService ratingServ = new RatingService();
+        private IRatingService _ratingServ;
+       
 
-            var age = member.Age;
-            var factor=member.Occupation.Rating.Factor;
-            // var rating =await ratingServ.GetRating(member.OccupationId);
+        public CalculationService(IRatingService ratingService)
+        {
+            _ratingServ = ratingService;
+        }       
+
+        public async Task<decimal> Calculate(decimal DeathSumInsured, int orgId, int age)
+        {
+            decimal TotalValue;
+            var rating = await _ratingServ.GetRatingFactor(orgId);
             if (age > 0)
-                return (decimal)((member.DeathSumInsured * factor) / (100 * 12 * age));
+                TotalValue = (decimal)((DeathSumInsured * rating) / (100 * 12 * age));
             else
-                return 0;
+                TotalValue = 0;
+
+            return TotalValue;
         }
     }
 }

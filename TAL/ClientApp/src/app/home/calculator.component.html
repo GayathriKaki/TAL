@@ -1,0 +1,81 @@
+<h2>TAL</h2>
+
+<div class="container">
+  <form (ngSubmit)="onSubmit(form)" #premiumForm="ngForm">
+    <div id="memberscreen1" *ngIf="ismemberScreen1">
+      <div class="row form-group col-6">
+        <label class="form-label" for="name">Name:</label>
+        <input [(ngModel)]="membermodel.name" #name="ngModel" type="text" class="form-control" autocomplete="off" autofocus="autofocus" required id="name" name="name" />
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+          <div *ngIf="name.errors.required">Name is required.</div>
+        </div>
+      </div>
+      <div class=" row form-group col-6">
+        <label class="form-label" for="age">Age:</label>
+        <input [(ngModel)]="membermodel.age" #age="ngModel" type="number" class="form-control" autocomplete="off" required pattern="[0-9]{1,3}" id="age" name="age" />
+        <div *ngIf="age.invalid && (age.dirty || age.touched)" class="alert alert-danger">
+          <div *ngIf="age.errors.required">Age is required.</div>
+        </div>
+      </div>
+      <div class="row form-group col-6">
+        <label class="form-label" for="dateofbirth">Date of Birth:</label>
+        <input [(ngModel)]="membermodel.dateOfBirth" #dateofbirth="ngModel" type="date" class="form-control" autocomplete="off" required id="dateOfBirth" name="dateOfBirth" />
+        <div *ngIf="dateofbirth.invalid && (dateofbirth.dirty || dateofbirth.touched)" class="alert alert-danger">
+          <div *ngIf="dateofbirth.errors.required">Date of Birth is required.</div>
+        </div>
+      </div>
+
+     
+    </div>
+    <div id="memberscreen2" *ngIf="ismemberScreen2">
+      <div class="row form-group col-6">
+        <label class="form-label">Occupation:</label>
+        <select class="form-control" #occupationId id="occupationId" [(ngModel)]="membermodel.occupationId" for="organizationId" name="ocupation">
+
+          <option *ngFor="let occupation of occupations" [value]="occupation.occupationId">{{occupation.occupationName}}</option>
+        </select>
+      </div>
+
+      <div class="row form-group col-6">
+        <label class="form-label" for="deathSumInsured">Sum Insured:</label>
+        <input [(ngModel)]="membermodel.deathSumInsured" #deathsuminsured="ngModel" type="number" step="1000" min="1" class="form-control" autocomplete="off" required id="deathSumInsured" name="deathSumInsured" />
+        <div *ngIf="deathsuminsured.invalid && (deathsuminsured.dirty || deathsuminsured.touched)" class="alert alert-danger">
+          <div *ngIf="deathsuminsured.errors.required">Sum Insured is required.</div>
+        </div>
+      </div>
+
+      <div class="row form-group col-6">
+        <label class="form-label" for="monthlyexpenses">Monthly Expenses Total:</label>
+        <input [(ngModel)]="membermodel.monthlyexpenses" #monthlyexpenses="ngModel" type="number" class="form-control" autocomplete="off" id="monthlyexpenses" name="monthlyexpenses" />
+
+      </div>
+      <div class="row form-group col-6">
+        <label class="form-label" for="postcode">Post Code:</label>
+        <input [(ngModel)]="membermodel.postcode" #postcode="ngModel" type="number" class="form-control" autocomplete="off" id="postcode" name="postcode" />
+
+      </div>
+      <div class="row form-group col-6">
+        <label class="form-label">States:</label>
+        <select class="form-control" #stateId [(ngModel)]="membermodel.stateId" name="state" id="state">
+          <option *ngFor="let state of statesList" [value]="state.stateId">{{state.stateName}}</option>
+        </select>
+      </div>
+
+    </div>
+    <div class="row form-group col-6">
+      <button type="button" class="btn btn-primary" value="Next" name="btnBack" *ngIf="isNextButton" (click)="nextClick()">Next</button>
+      <button type="button" class="btn btn-primary" value="Back" name="btnBack" *ngIf="isBackButton" (click)="backClick()">Back</button>
+      &nbsp; <button type="submit" class="btn btn-primary" (click)="submit()" *ngIf="isSubmitButton">Submit</button>
+
+    </div>
+  </form>
+</div>
+<div class="container">
+<div *ngIf="membermodel.premium > 0">
+    <h3>Calculated Total</h3>
+    <div class="row form-group col-6">
+        {{membermodel.premium}}
+    </div>
+    
+</div>
+</div>

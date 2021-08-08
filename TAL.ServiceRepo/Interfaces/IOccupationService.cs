@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TAL.EF.Models;
 
-namespace TAL.ServiceRepository.Interfaces
+namespace TAL.ServiceRepo.Interfaces
 {
    public interface IOccupationService
     {

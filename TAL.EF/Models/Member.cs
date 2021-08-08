@@ -29,5 +29,8 @@ namespace TAL.EF.Models
         [ForeignKey(nameof(OccupationId))]
         [InverseProperty("Members")]
         public virtual Occupation Occupation { get; set; }
+
+
+        public decimal TotalValue { get; set; }
     }
 }

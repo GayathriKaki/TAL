@@ -5,6 +5,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using TAL.ServiceRepo.Interfaces;
+using TAL.ServiceRepo.Services;
+using Microsoft.EntityFrameworkCore;
+using TAL.EF.Models;
+using AutoMapper;
+using TAL.AutoMapper;
+
 namespace TAL
 {
     public class Startup
@@ -20,6 +27,20 @@ namespace TAL
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            services.AddSingleton(mapperConfig.CreateMapper());
+
+            services.AddTransient<IRatingService, RatingService>();
+            services.AddTransient<IOccupationService, OccupationService>();
+
+            services.AddTransient<ICalculationService, CalculationService>();
+
+            services.AddDbContext<DBContext>(options =>
+     options.UseSqlServer(Configuration.GetConnectionString("TalDB")));
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

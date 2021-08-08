@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using TAL.EF.Models;
 
-namespace TAL.ServiceRepository.Interfaces
+namespace TAL.ServiceRepo.Interfaces
 {
     public interface ICalculationService
     {
 
-        Task<decimal> CalculateTotal(Member member);
+       // Task<Member> CalculateTotal(Member member);
+        Task<decimal> Calculate(decimal DeathSumInsured, int orgId, int age);
     }
 }

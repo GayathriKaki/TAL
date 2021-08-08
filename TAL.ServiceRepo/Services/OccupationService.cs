@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,10 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using TAL.EF.Models;
 
-using TAL.ServiceRepository.Interfaces;
+using TAL.ServiceRepo.Interfaces;
 
 
-namespace TAL.ServiceRepository.Services
+namespace TAL.ServiceRepo.Services
 {
 
 
@@ -25,7 +25,9 @@ namespace TAL.ServiceRepository.Services
         }
         public async Task<IEnumerable<Occupation>> GetAllOccupations()
         {
-            return await _dbcontext.Occupations.ToListAsync() as IQueryable<Occupation>;          
+
+           
+            return await _dbcontext.Occupations.ToListAsync();          
             
 
         }

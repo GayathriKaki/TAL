@@ -89,7 +89,9 @@ export class CalculatorComponent implements OnInit  {
     this.ismemberScreen2 = false;
   }
   nextClick() {
-   
+    if (!this.premiumForm.valid) {
+      return;
+    }
     this.isBackButton = true;
     this.isNextButton = false;
     this.ismemberScreen1 = false;
@@ -97,6 +99,8 @@ export class CalculatorComponent implements OnInit  {
     this.isSubmitButton = true;
    
   }
+
+  
   submit() {
     console.log("öValue :" + this.membermodel.occupationId);
    

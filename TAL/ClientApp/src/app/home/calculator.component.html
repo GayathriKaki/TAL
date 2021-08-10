@@ -72,9 +72,9 @@
 
     </div>
     <div class="row form-group col-6">
-      <button type="button" class="btn btn-primary" value="Next" name="btnBack" *ngIf="isNextButton" (click)="nextClick()">Next</button>
-      <button type="button" class="btn btn-primary" value="Back" name="btnBack" *ngIf="isBackButton" (click)="backClick()">Back</button>
-      &nbsp; <button type="submit" class="btn btn-primary" (click)="submit()" *ngIf="isSubmitButton">Submit</button>
+      <button type="button" class="btn btn-primary" value="Next" name="btnBack" *ngIf="ismemberScreen1" (click)="nextClick()">Next</button>
+      <button type="button" class="btn btn-primary" value="Back" name="btnBack" *ngIf="ismemberScreen2" (click)="backClick()">Back</button>
+      &nbsp; <button type="submit" class="btn btn-primary" (click)="submit()" *ngIf="ismemberScreen2">Submit</button>
 
     </div>
   </form>

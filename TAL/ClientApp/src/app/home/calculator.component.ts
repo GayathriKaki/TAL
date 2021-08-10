@@ -12,17 +12,7 @@ import { NgForm } from '@angular/forms';
 export class CalculatorComponent implements OnInit  {
   @ViewChild(NgForm) premiumForm: NgForm;
 
-  //premium: IPremium = {
-  //  name: '',
-  //  age: 0,
-  //  dateOfBirth: new Date(),
-  //  deathSumInsured: 0,
-  //  occupationId: 0,
-  //  premium: 0,
-  //};
-  isNextButton: boolean;
-  isBackButton: boolean;
-  isSubmitButton: boolean;
+
   errorReceived: boolean;
   ismemberScreen2: boolean;
   ismemberScreen1: boolean;
@@ -45,9 +35,7 @@ export class CalculatorComponent implements OnInit  {
   }
   ngOnInit() {
     this.getOccupationList();
-    this.isBackButton = false;
-    this.isNextButton = true;
-    this.isSubmitButton = false;
+
     this.getStateList();
     this.ismemberScreen1 = true;
     this.ismemberScreen2 = false;
@@ -76,15 +64,13 @@ export class CalculatorComponent implements OnInit  {
     this.errorReceived = false;
     this.service.calculate(this.membermodel.deathSumInsured, this.membermodel.occupationId, this.membermodel.age)
       .subscribe(premium => {
-       // this.premium.premium = premium;
+     
         this.membermodel.premium = premium;
       });
   }
 
   backClick() {
-    this.isBackButton = false;
-    this.isNextButton = true;
-    this.isSubmitButton = false;
+
     this.ismemberScreen1 = true;
     this.ismemberScreen2 = false;
   }
@@ -92,11 +78,10 @@ export class CalculatorComponent implements OnInit  {
     if (!this.premiumForm.valid) {
       return;
     }
-    this.isBackButton = true;
-    this.isNextButton = false;
+  
     this.ismemberScreen1 = false;
     this.ismemberScreen2 = true;
-    this.isSubmitButton = true;
+ 
    
   }
 

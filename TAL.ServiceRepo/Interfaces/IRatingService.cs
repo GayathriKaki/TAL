@@ -9,7 +9,7 @@ namespace TAL.ServiceRepo.Interfaces
 {
     public interface IRatingService
     {
-        Task<Rating> GetRating(int occupationId);
+       
         Task<Decimal> GetRatingFactor(int occupationId);
     }
 }
